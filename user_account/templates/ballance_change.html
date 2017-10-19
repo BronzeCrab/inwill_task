@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% block content %}
+  <div class="row h-100 align-items-center">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>acc_id</th>
+          <th>ballance</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for acc in accounts %}
+        <tr>
+          <th>{{acc.id}}</th>
+          <td>{{acc.ballance}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div class="card text-center m-auto" style="width: 20rem;">
+      <form method='post'>
+        {% csrf_token %}
+        {{ form|bootstrap }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      {% if messages %}
+      <ul class="messages">
+          {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </div>
+{% endblock%}

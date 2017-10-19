@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from user_account.views import BallanceChangeView
 
 urlpatterns = [
+    url(r'^$', BallanceChangeView.as_view(), name="ballance_change"),
     url(r'^admin/', admin.site.urls),
 ]
